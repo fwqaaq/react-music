@@ -13,6 +13,5 @@
   "requirePragma": false,
   "insertPragma": false,
   "proseWrap": "preserve",
-  "htmlWhitespaceSensitivity": "ignore",
-  "vueIndentScriptAndStyle": false
+  "htmlWhitespaceSensitivity": "ignore"
 }
