@@ -18,4 +18,13 @@ export default defineConfig({
       hashPrefix: 'prefix',
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://123.207.32.32:9002',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })

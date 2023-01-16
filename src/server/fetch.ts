@@ -7,7 +7,7 @@ type IConfig = {
   referrer?: string
   controller?: AbortController
   signal?: AbortSignal | null
-  BASE_URL?: ''
+  BASE_URL?: string
 }
 
 type IRequestConfig = {
@@ -24,7 +24,7 @@ export default class Fetch {
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {},
-      mode: 'no-cors',
+      mode: 'cors',
       redirect: 'follow',
       BASE_URL: '',
       signal: null,
@@ -45,7 +45,9 @@ export default class Fetch {
         .then((data: T) => resolve(data))
         .catch((error: Error) => {
           if (error.name === 'AbortError') {
-            this.fetchAbort(`Abort, operation: ${error.message}`)
+            // this.fetchAbort(`Abort, operation: ${error.message}`)
+            // if request ends, it should be resolved, not rejected
+            return
           } else if (error.name === 'TimeoutError') {
             this.fetchAbort(`Timeout, operation: ${error.message}`)
           } else {
